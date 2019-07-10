@@ -1,6 +1,6 @@
 function deepEqual(obj1, obj2) {
     //check if number of properties are the same
-    if (Object.keys(obj1).length != Object.keys(obj2).length) {
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
         return false;
     }
 
