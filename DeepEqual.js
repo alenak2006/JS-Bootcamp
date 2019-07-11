@@ -1,6 +1,6 @@
 'use strict'
 
-function deepEqual(obj1, obj2) {
+function deepEqual (obj1, obj2) {
   // check if number of properties are the same
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false
@@ -25,20 +25,3 @@ function deepEqual(obj1, obj2) {
   }
   return true
 }
-
-let obj1 = {
-  name: "Misha",
-  order: {
-    price: 20
-  }
-};
-
-let obj2 = {
-  name: "Misha",
-  order: {
-    price: 20
-  }
-};
-
-deepEqual(obj1, obj2);
-console.log("hi");
