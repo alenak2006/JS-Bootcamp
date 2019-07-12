@@ -30,5 +30,3 @@ var obj1 = { a: 'test', b: 12 }
 var obj2 = { a: 'test', b: 12 }
 deepEqual(obj1, obj2)
 
-var elem = document.querySelector('h1')
-elem.innerHTML = 'here it is'
