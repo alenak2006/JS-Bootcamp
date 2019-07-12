@@ -1,6 +1,6 @@
 'use strict'
 
-function deepEqual (obj1, obj2) {
+function deepEqual(obj1, obj2) {
   // check if number of properties are the same
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false
@@ -25,3 +25,10 @@ function deepEqual (obj1, obj2) {
   }
   return true
 }
+
+var obj1 = { a: 'test', b: 12 }
+var obj2 = { a: 'test', b: 12 }
+deepEqual(obj1, obj2)
+
+var elem = document.querySelector('h1')
+elem.innerHTML = 'here it is'
