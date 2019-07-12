@@ -30,3 +30,5 @@ var obj1 = { a: 'test', b: 12 }
 var obj2 = { a: 'test', b: 12 }
 deepEqual(obj1, obj2)
 
+var a;
+
