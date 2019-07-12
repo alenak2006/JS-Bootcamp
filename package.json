@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/alenak2006/JS-Bootcamp/issues"
   },
-  "homepage": "https://github.com/alenak2006/JS-Bootcamp#readme"
+  "homepage": "https://github.com/alenak2006/JS-Bootcamp#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1"
+  }
 }
