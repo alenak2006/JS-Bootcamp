@@ -7,7 +7,7 @@ function deepEqual(obj1, obj2) {
   }
 
   for (let key in obj1) {
-    if (Object.prototype.hasOwnProperty.call(obj1, "key") && Object.prototype.hasOwnProperty.call(obj2, "key")) {
+    if (Object.prototype.hasOwnProperty.call(obj1, [key]) && Object.prototype.hasOwnProperty.call(obj2, [key])) {
       // if property is an object then recurse
       if (typeof obj1[key] === 'object') {
         if (deepEqual(obj1[key], obj2[key])) {
