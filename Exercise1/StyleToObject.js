@@ -23,21 +23,14 @@ let style = `
 `;
 
 function styleToObject(str) {
-  const obj = {};
-  let key = '';
-  let value = 0;
-  while (str.indexOf(":") != -1) {
-    //starting with the position 3 because the leading chars before each style are non-printable
-    key = str.slice(3, str.indexOf(":"));
-
-    //adding 2 more positions to cater for  ":" and blank space
-    value = str.slice(str.indexOf(":") + 2, str.indexOf(";"));
-    obj[key] = value;
-
-    //reducing the string 
-    str = str.slice(str.indexOf(";") + 1);
-  }
-  return obj;
+  return str.split(';')
+    .map(str => str.trim())
+    .filter(Boolean)
+    .reduce((obj, str) => {
+      const [key, value] = str.split(':');
+      return { ...obj, [key.trim()]: value.trim() }
+    }, {})
 }
 
-styleToObject(style);
+console.log(styleToObject(style));
+
