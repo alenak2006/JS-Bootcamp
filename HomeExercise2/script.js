@@ -12,13 +12,13 @@ function highlight(table) {
     console.log(a);
     console.log(trs[item].cells[3]);
   }
-  /*for (let i = 0; i < trs.length; i++) {
+  for (let i = 0; i < trs.length; i++) {
     let statusCell = trs[i].cells[3];
     console.log(statusCell);
     if (statusCell.dataset.available) {
       statusCell.addClass('available');
     }
-  }*/
+  }
 
   console.log(trs);
 }
