@@ -10,12 +10,17 @@
     </script>
     <script>
         let body = document.body;
-
-        body.innerHTML = "<!--" + body.tagName + "-->";
-
-        console.log(body.firstChild.data); // BODY
+        console.log(body.firstChild.nodeType); // BODY
+        body.innerHTML += "<!--" + body.tagName + "-->";
         console.log(body.lastChild.data); // BODY
+        //document is an instance of HTMLDocument
+        console.log(document);
+        //document - HTMLDocument - Document - Node - Object
+        console.dir(document);
+        //
+
     </script>
 </body>
+
 
 </html>
