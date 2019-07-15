@@ -17,10 +17,12 @@ table, td {
     background-color: #932bb3;
   }
   
-  .available td {
+  .available td{
     border: 2px solid green;
   }
   
-  .unavailable td {
+  .unavailable td{
     border: 2px solid red;
   }
+
+
