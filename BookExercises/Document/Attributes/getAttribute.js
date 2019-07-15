@@ -15,3 +15,11 @@ for (let link of links) {
         link.style.color = 'orange';
     }
 }
+
+//version 2
+// look for all links that have :// in href
+// but href doesn't start with http://internal.com
+let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+let links2 = document.querySelectorAll(selector);
+
+links2.forEach(link => link.style.color = 'orange');
