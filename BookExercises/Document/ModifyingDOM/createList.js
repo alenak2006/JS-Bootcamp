@@ -1,13 +1,14 @@
 
-alert('Add more items?');
-let input = prompt('Add more items?', '');
+'use strict'
 let ul = document.getElementById('ul3');
+let input = prompt('Add more items?', '');
 
 while (input) {
     let li = document.createElement('li');
-    li.innerHTML(input);
-    li.append(li);
-    ul.appendChild(li);
+    li.textContent = input;
+    ul.append(li);
+
+    input = prompt('Add more items?', '');
 
 }
 
