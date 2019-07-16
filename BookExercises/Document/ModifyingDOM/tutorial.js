@@ -2,10 +2,18 @@
 //1. document.createElement(tag)
 //2. document.createTextNode(value)
 //3. elem.cloneNode(deep) 
-/*let div = document.createElement('div');
-div.className('alert alert-success');
-div.innerHTML('<b>Hi there</b>This is an important message.')
-*/
+// let div1 = document.createElement('div');
+// div1.className = "alert alert-success";
+// div1.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+// document.body.appendChild(div1);
+
+let div2 = document.createElement('div');
+div2.className = 'alert alert-success';
+div2.innerHTML = '<b>Hi there</b>This is an important message.'
+document.body.appendChild(div2);
+
+
+
 //let textNode = document.createTextNode('here ii is');
 
 //Methods to insert/delete from parent
@@ -14,7 +22,7 @@ div.innerHTML('<b>Hi there</b>This is an important message.')
 //2. parentElem.insertBefore(node, nextSibling) - insersts before nextSibling into parent
 //3. parentElem.replaceChild(node, oldChild)
 //4. parentElem.removeChild(node)
-//document.body.appendChild(div);
+
 
 //new ways
 //1. node.append(...nodes or strings) – append nodes or strings at the end of node,
@@ -40,17 +48,16 @@ append.innerHTML = 'append';
 ol.append(append);
 
 //6. elem.insertAdjacentHTML/Text/Element (where, html) - it is similar to the one above but HTML inserted instead of element
-document.body.insertAdjacentHTML("afterbegin", `<div class="alert alert-success"> <strong>Hi there!</strong> You've read an important message. </div>`);
+//document.body.insertAdjacentHTML("afterbegin", `<div class="alert alert-success"> <strong>Hi there!</strong> You've read an important message. </div>`);
 
 //Cloning Nodes
 //elem.cloneNode(true) clone with children
 //elem.cloneNode(false) clone without children
-let div = document.querySelector('div');
+/*let div = document.querySelector('div');
 let div2 = div.cloneNode(true); // clone the message
 div2.querySelector('strong').innerHTML = 'Bye there!'; // change the clone
-
 div.after(div2); // show the clone after the existing div
-
+*/
 //Also can use document fragment - it is a wrapper to hold a list of nodes
 function getListContent() {
     let fragment = new DocumentFragment();
