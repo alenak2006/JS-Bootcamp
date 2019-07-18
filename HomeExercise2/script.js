@@ -6,7 +6,7 @@ function highlight(table) {
 
   for (let i = 0; i < trs.length; i++) {
     let row = trs[i];
-    let ageCell = row.cells[1].innerText;
+    let ageCell = Number(row.cells[1].innerText);
     let genderCell = row.cells[2].innerText;
     let statusCell = row.cells[3].dataset.available;
 
