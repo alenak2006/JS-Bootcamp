@@ -24,7 +24,7 @@ function highlight(table) {
     //add male/female class to the row based on a value in Gender column
     if (genderCell) {
       if (genderCell.toLowerCase() === 'm') {
-        row.classList.add('male')
+        row.classList.add('male');
       } else if (genderCell.toLowerCase() === 'f') {
         row.classList.add('female');
       }
@@ -33,7 +33,7 @@ function highlight(table) {
     //add style based on on a value in Age column
     if (!isNaN(ageCell)) {
       if (ageCell < 18) {
-        row.style.textDecoration = "line-through"
+        row.style.textDecoration = "line-through";
       }
     }
   }
