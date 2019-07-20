@@ -6,8 +6,7 @@ function highlight(table) {
 
   for (let i = 0; i < trs.length; i++) {
     let row = trs[i];
-    let [ageCell, genderCell, statusCell] = [Number(row.cells[1].innerText), row.cells[2].innerText, row.cells[3].dataset.available];
-    let [rowClass] = [row.classList];
+    let [ageCell, genderCell, statusCell, rowClass] = [Number(row.cells[1].innerText), row.cells[2].innerText, row.cells[3].dataset.available, row.classList];
 
     //add available/unavailable class to the row based on a value in Status column and data attribute
     //apply attribute hidden if data is unavailable
