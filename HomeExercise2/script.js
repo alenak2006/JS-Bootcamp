@@ -6,16 +6,16 @@ function highlight(table) {
 
   for (let i = 0; i < trs.length; i++) {
     let row = trs[i];
-    let ageCell = Number(row.cells[1].innerText);
-    let genderCell = row.cells[2].innerText;
-    let statusCell = row.cells[3].dataset.available;
+    let [ageCell, genderCell, statusCell] = [Number(row.cells[1].innerText), row.cells[2].innerText, row.cells[3].dataset.available];
+    let [rowClass] = [row.classList];
 
-    //add available/unavailable class to the row based on a value in Status column and data attribute and apply attribute hidden if unavailable
+    //add available/unavailable class to the row based on a value in Status column and data attribute
+    //apply attribute hidden if data is unavailable
     if (statusCell) {
       if (statusCell.toLowerCase() === "true") {
-        row.classList.add('available');
+        rowClass.add('available');
       } else if (statusCell.toLowerCase() === "false") {
-        row.classList.add('unavailable');
+        rowClass.add('unavailable');
       }
     } else {
       row.hidden = true;
@@ -24,9 +24,9 @@ function highlight(table) {
     //add male/female class to the row based on a value in Gender column
     if (genderCell) {
       if (genderCell.toLowerCase() === 'm') {
-        row.classList.add('male');
+        rowClass.add('male');
       } else if (genderCell.toLowerCase() === 'f') {
-        row.classList.add('female');
+        rowClass.add('female');
       }
     }
 
