@@ -1,133 +1,105 @@
 'use strict';
-const BOARD_SIZE = 3;
 let table = document.querySelector('#board tbody');
 table.addEventListener("click", play);
-let board = new Array(BOARD_SIZE);
-
-//create board
-function createBoard() {
-  for (var i = 0; i < board.length; i++) {
-    board[i] = new Array(2);
-  }
-}
-createBoard();
-
-//check ifthe board is full - if all values are truthy then board is full
-function isBoardFull() {
-  for (let i = 0; i < BOARD_SIZE; i++) {
-    for (let j = 0; j < BOARD_SIZE; j++) {
-      if (!board[i][j]) {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-
-//add values to the board array
-function addValue() {
-  if (!isBoardFull()) {
-    const rows = [...table.querySelectorAll('tbody tr')];
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        board[i][j] = rows[i].cells[j].dataset.value;
-      }
-    }
-  }
-}
+let message = document.querySelector('#message');
+let button = document.querySelector('button');
+button.addEventListener("click", resetBoard);
 
 function play(event) {
-  //add X
-  const el = event.target;
-  el.innerHTML = 'X';
-  el.setAttribute('data-value', 'X');
-  //add X to dataset
-  addValue();
-  let winner = checkWinner();
-  if (winner) return winner;
+    //1. Add X
+    const elem = event.target;
+    addX(elem);
 
-  //add O
-  if (!isBoardFull()) {
+    //2. Check if X is a winner
+    if (isWinner()) {
+        message.innerHTML = "YOU WIN!";
+        message.classList.add("win");
+        table.removeEventListener("click", play);
+        return;
+    }
+
+    //3. Check if Board is full
+    if (isBoardFull()) {
+        message.innerHTML = "IT IS A DRAW!";
+        message.classList.add("draw");
+        table.removeEventListener("click", play);
+        return;
+    }
+
+    //4. Add O
+    addO();
+
+    //5. Check if O is a winner
+    if (isWinner()) {
+        message.innerHTML = "YOU LOSE!";
+        message.classList.add("lose");
+        table.removeEventListener("click", play);
+        return;
+    }
+
+    //6. Check if Board is full
+    if (isBoardFull()) {
+        message.innerHTML = "IT IS A DRAW!";
+        message.classList.add("draw");
+        table.removeEventListener("click", play);
+        return;
+    }
+}
+
+function addX(elem) {
+    elem.innerHTML = 'X';
+}
+
+function isWinner() {
+    const rows = [...table.querySelectorAll('tbody tr')];
+    if (rows[0].cells[0].innerHTML === rows[0].cells[1].innerHTML && rows[0].cells[1].innerHTML === rows[0].cells[2].innerHTML && rows[0].cells[1].innerHTML != "") { return true }
+    else if (rows[1].cells[0].innerHTML === rows[1].cells[1].innerHTML && rows[1].cells[1].innerHTML === rows[1].cells[2].innerHTML && rows[1].cells[1].innerHTML != "") { return true }
+    else if (rows[2].cells[0].innerHTML === rows[2].cells[1].innerHTML && rows[2].cells[1].innerHTML === rows[2].cells[2].innerHTML && rows[2].cells[1].innerHTML != "") { return true }
+    else if (rows[0].cells[0].innerHTML === rows[1].cells[0].innerHTML && rows[1].cells[0].innerHTML === rows[2].cells[0].innerHTML && rows[1].cells[0].innerHTML != "") { return true }
+    else if (rows[0].cells[1].innerHTML === rows[1].cells[1].innerHTML && rows[1].cells[1].innerHTML === rows[2].cells[1].innerHTML && rows[1].cells[1].innerHTML != "") { return true }
+    else if (rows[0].cells[2].innerHTML === rows[1].cells[2].innerHTML && rows[1].cells[2].innerHTML === rows[2].cells[2].innerHTML && rows[1].cells[2].innerHTML != "") { return true }
+    else if (rows[0].cells[0].innerHTML === rows[1].cells[1].innerHTML && rows[1].cells[1].innerHTML === rows[2].cells[2].innerHTML && rows[1].cells[1].innerHTML != "") { return true }
+    else if (rows[0].cells[2].innerHTML === rows[1].cells[1].innerHTML && rows[1].cells[1].innerHTML === rows[2].cells[0].innerHTML && rows[1].cells[1].innerHTML != "") { return true }
+    return false
+
+}
+
+function isBoardFull() {
+    const rows = [...table.querySelectorAll('tbody tr')];
+    for (let i = 0; i < rows.length; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (!rows[i].cells[j].innerHTML) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function addO() {
     const rows = [...table.querySelectorAll('tbody tr')];
     do {
-      let randomX = Math.floor(Math.random() * 3);
-      let randomY = Math.floor(Math.random() * 3);
-      var cell = rows[randomX].cells[randomY];
-      if (!cell.dataset.value) {
-        cell.innerHTML = 'O';
-        cell.setAttribute('data-value', 'O');
-        //add O to dataset
-        addValue();
-        let winner = checkWinner();
-        if (winner) return winner;
-        break;
-      }
+        let randomX = Math.floor(Math.random() * 3);
+        let randomY = Math.floor(Math.random() * 3);
+        var cell = rows[randomX].cells[randomY];
+        if (!rows[randomX].cells[randomY].innerHTML) {
+            cell.innerHTML = 'O';
+            break;
+        }
     } while (rows)
-  }
 }
-
-function checkWinner() {
-
-  if (board[0][0] === board[0][1] && board[0][1] === board[0][2]) return board[0][0]
-  else if (board[1][0] === board[1][1] && board[1][1] === board[1][2]) return board[1][0]
-  else if (board[2][0] === board[2][1] && board[2][1] === board[2][2]) return board[2][0]
-  else if (board[0][0] === board[1][0] && board[1][0] === board[2][0]) return board[0][0]
-  else if (board[0][1] === board[1][1] && board[1][1] === board[2][1]) return board[0][1]
-  else if (board[0][2] === board[1][2] && board[1][2] === board[2][2]) return board[0][2]
-  else if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) return board[0][0]
-  else if (board[2][0] === board[1][1] && board[1][1] === board[2][0]) return board[2][0]
-}
-
-
-
-
-
-
-
-let button = document.querySelector('button');
-button.addEventListener("click", resetBoard, false);
 
 function resetBoard() {
-  let tds = table.querySelectorAll('td');
-  //let div = document.querySelector('.win .lose');
-  //count = 0;
-  for (const td of tds) {
-    td.innerHTML = '';
-    td.removeAttribute('data-value');
-  }
+    const rows = [...table.querySelectorAll('tbody tr')];
+    for (let i = 0; i < rows.length; i++) {
+        for (let j = 0; j < 3; j++) {
+            rows[i].cells[j].innerHTML = "";
+        }
+    }
+    message.innerHTML = "LET'S PLAY!";
+    message.removeAttribute("class");
+    table.addEventListener("click", play);
 }
 
-
-
-
-
-
-
-// let count = 0;
-// function add_O() {
-//   let tr = document.querySelectorAll('tr');
-
-//   while (count < 4) {
-//     let randomX = Math.floor(Math.random() * 3);
-//     let randomY = Math.floor(Math.random() * 3);
-//     let selectedCell = tr[randomX].cells[randomY];
-//     console.log(selectedCell);
-//     if (selectedCell.innerHTML === '') {
-//       selectedCell.innerHTML = 'O';
-//       count++;
-//       console.log(count);
-//       return;
-//     }
-//   }
-// }
-
-// function detectWinner() {
-//   if (count === 4) {
-//     table.insertAdjacentHTML("afterend", "<h1>YOU WIN</h1>");
-//     return;
-//   }
-//   table.insertAdjacentHTML("afterend", "<h1 class = 'lose'>COMPUTER WINS</h1>");
-
-// }
 
 
