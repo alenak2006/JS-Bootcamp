@@ -12,7 +12,7 @@ function createBoard() {
 }
 createBoard();
 
-//check if board is full
+//check ifthe board is full - if all values are truthy then board is full
 function isBoardFull() {
   for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
@@ -24,14 +24,13 @@ function isBoardFull() {
   return true;
 }
 
-//add values to the board
+//add values to the board array
 function addValue() {
   if (!isBoardFull()) {
     const rows = [...table.querySelectorAll('tbody tr')];
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         board[i][j] = rows[i].cells[j].dataset.value;
-        console.log(board[i][j]);
       }
     }
   }
@@ -42,9 +41,11 @@ function play(event) {
   const el = event.target;
   el.innerHTML = 'X';
   el.setAttribute('data-value', 'X');
-
   //add X to dataset
   addValue();
+  let winner = checkWinner();
+  if (winner) return winner;
+
   //add O
   if (!isBoardFull()) {
     const rows = [...table.querySelectorAll('tbody tr')];
@@ -57,11 +58,26 @@ function play(event) {
         cell.setAttribute('data-value', 'O');
         //add O to dataset
         addValue();
+        let winner = checkWinner();
+        if (winner) return winner;
         break;
       }
     } while (rows)
   }
 }
+
+function checkWinner() {
+
+  if (board[0][0] === board[0][1] && board[0][1] === board[0][2]) return board[0][0]
+  else if (board[1][0] === board[1][1] && board[1][1] === board[1][2]) return board[1][0]
+  else if (board[2][0] === board[2][1] && board[2][1] === board[2][2]) return board[2][0]
+  else if (board[0][0] === board[1][0] && board[1][0] === board[2][0]) return board[0][0]
+  else if (board[0][1] === board[1][1] && board[1][1] === board[2][1]) return board[0][1]
+  else if (board[0][2] === board[1][2] && board[1][2] === board[2][2]) return board[0][2]
+  else if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) return board[0][0]
+  else if (board[2][0] === board[1][1] && board[1][1] === board[2][0]) return board[2][0]
+}
+
 
 
 

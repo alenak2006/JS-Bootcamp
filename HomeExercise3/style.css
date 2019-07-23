@@ -34,8 +34,22 @@ button{
     height: 50px;
   }
 
+#message {
+  width: 320px;
+  height: 50px;
+  text-align: center;
+  font-size: 35px;
+}
+
   .lose{
     color: red;
+  }
+
+  .win{
+    color: green;
+  }
+  .draw{
+    color: blue;
   }
 
 
