@@ -15,6 +15,7 @@ function play(event) {
     if (isWinner()) {
         message.innerHTML = "YOU WIN";
         message.classList.add("win");
+        table.removeEventListener("click", play);
         return;
     }
 
@@ -22,6 +23,7 @@ function play(event) {
     if (isBoardFull()) {
         message.innerHTML = "IT IS A DRAW";
         message.classList.add("draw");
+        table.removeEventListener("click", play);
         return;
     }
 
@@ -33,6 +35,7 @@ function play(event) {
     if (isWinner()) {
         message.innerHTML = "YOU LOSE";
         message.classList.add("lose");
+        table.removeEventListener("click", play);
         return;
     }
 
@@ -40,6 +43,7 @@ function play(event) {
     if (isBoardFull()) {
         message.innerHTML = "IT IS A DRAW";
         message.classList.add("draw");
+        table.removeEventListener("click", play);
         return;
     }
 }
@@ -96,6 +100,7 @@ function resetBoard() {
     }
     message.innerHTML = "LET'S PLAY";
     message.removeAttribute("class");
+    table.addEventListener("click", play);
 }
 
 
