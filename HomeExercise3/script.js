@@ -50,6 +50,19 @@ function addX(elem) {
     elem.innerHTML = 'X';
 }
 
+function addO() {
+    const rows = [...table.querySelectorAll('tbody tr')];
+    do {
+        let randomX = Math.floor(Math.random() * 3);
+        let randomY = Math.floor(Math.random() * 3);
+        var cell = rows[randomX].cells[randomY];
+        if (!rows[randomX].cells[randomY].innerHTML) {
+            cell.innerHTML = 'O';
+            break;
+        }
+    } while (rows)
+}
+
 function isWinner() {
     const rows = [...table.querySelectorAll('tbody tr')];
     if (rows[0].cells[0].innerHTML === rows[0].cells[1].innerHTML && rows[0].cells[1].innerHTML === rows[0].cells[2].innerHTML && rows[0].cells[1].innerHTML != "") { return true }
@@ -74,19 +87,6 @@ function isBoardFull() {
         }
     }
     return true;
-}
-
-function addO() {
-    const rows = [...table.querySelectorAll('tbody tr')];
-    do {
-        let randomX = Math.floor(Math.random() * 3);
-        let randomY = Math.floor(Math.random() * 3);
-        var cell = rows[randomX].cells[randomY];
-        if (!rows[randomX].cells[randomY].innerHTML) {
-            cell.innerHTML = 'O';
-            break;
-        }
-    } while (rows)
 }
 
 function resetBoard() {
