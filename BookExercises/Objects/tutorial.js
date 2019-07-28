@@ -50,3 +50,45 @@ const obj2 = {};
 Object.assign(obj2, user1);
 // overwrite name, add isAdmin
 Object.assign(user1, { name: "Pete", isAdmin: true });
+
+//all objects are true when converted to primitives(boolean)
+//numeric conversion happens with Date()
+//string converted when we use log or alert functions
+
+//object to primitive used by many built in functions
+//string - alert, other to string methods
+//number - for maths
+//default - operators
+
+//when new keyword is used 
+//1. empty object is created and 'this' assigned to this object
+//2. function body executes, modifies 'this' adds properties to this
+//3. value of 'this' is returned
+
+function User(name) {
+    // this = {};  (implicitly)
+
+    // add properties to this
+    this.name = name;
+    this.isAdmin = false;
+
+    // return this;  (implicitly)
+}
+
+let user3 = new User("Jack");
+console.log(user3);
+
+function User2(name) {
+    if (!new.target) { // if you run me without new
+        return new User(name); // ...I will add new for you
+    }
+
+    this.name = name;
+}
+
+let john = User2("John"); // redirects call to new User
+console.log(john.name); // John
+
+
+
+
