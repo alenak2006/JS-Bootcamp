@@ -1,0 +1,159 @@
+table {
+    border-collapse: collapse;
+  }
+table, th, td{
+    border: 1px solid black;
+}
+
+td{
+    padding: 3px 5px;
+}
+
+
+#field {
+    width: 200px;
+    height: 150px;
+    border: 10px solid black;
+    background-color: #00FF00;
+    overflow: hidden;
+    position: relative;
+}
+    
+#ball{
+    position: absolute;
+    left: 0; /* relative to the closest positioned ancestor (field) */
+    top: 0;
+    transition: 1s all
+}
+/*
+.menu ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+  }
+
+  .menu .title {
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .menu .title::before {
+    content: '▶ ';
+    font-size: 80%;
+    color: green;
+  }
+
+  .menu.open .title::before {
+    content: '▼ ';
+  }
+
+  .menu.open ul {
+    display: block;
+  }
+*/
+/*
+  body {
+    margin: 10px auto;
+    width: 470px;
+  }
+  
+  h3 {
+    margin: 0;
+    padding-bottom: .3em;
+    font-size: 1.1em;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0 0 .5em;
+  }
+  
+  .pane {
+    background: #edf5e1;
+    padding: 10px 20px 10px;
+    border-top: solid 2px #c4df9b;
+  }
+  
+  .remove-button {
+    font-size: 110%;
+    color: darkred;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    float:right;
+  }
+*/
+body {
+    padding: 10px;
+  }
+  
+  .carousel {
+    position: relative;
+    width: 398px;
+    padding: 10px 40px;
+    border: 1px solid #CCC;
+    border-radius: 15px;
+    background: #eee;
+  }
+  
+  .carousel img {
+    width: 130px;
+    height: 130px;
+    /* make it block to remove space around images */
+    display: block;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 60px;
+    padding: 0;
+    background: #ddd;
+    border-radius: 15px;
+    border: 1px solid gray;
+    font-size: 24px;
+    line-height: 24px;
+    color: #444;
+    display: block;
+  }
+  
+  .arrow:focus {
+    outline: none;
+  }
+  
+  .arrow:hover {
+    background: #ccc;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 7px;
+  }
+  
+  .next {
+    right: 7px;
+  }
+  
+  .gallery {
+    width: 390px;
+    overflow: hidden;
+  }
+  
+  .gallery ul {
+    height: 130px;
+    width: 9999px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: margin-left 250ms;
+    /* remove white-space between inline-block'ed li */
+    /* http://davidwalsh.name/remove-whitespace-inline-block */
+    font-size: 0;
+  }
+  
+  .gallery li {
+    display: inline-block;
+  }
