@@ -1,16 +1,29 @@
 let menuElem = document.querySelector('#sweeties');
 let titleElem = menuElem.querySelector('.title');
-
 titleElem.onclick = function () {
     menuElem.classList.toggle('open');
 };
 
-let panes = document.querySelectorAll('.pane');
+let tree = document.querySelector('#tree');
+// move all text into <span>
+// they occupy exactly the place necessary for the text,
+for (let li of tree.querySelectorAll('li')) {
+    let span = document.createElement('span');
+    li.prepend(span);
+    span.append(span.nextSibling); // move the text node into span
+}
 
-for (let pane of panes) {
-    pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
-    // button becomes the first child of pane
-    pane.firstChild.onclick = () => pane.remove();
+// catch clicks on whole tree
+tree.onclick = function (event) {
+
+    if (event.target.tagName != 'SPAN') {
+        return;
+    }
+
+    let childrenContainer = event.target.parentNode.querySelector('ul');
+    if (!childrenContainer) return; // no children
+
+    childrenContainer.hidden = !childrenContainer.hidden;
 }
 
 let carousel = document.querySelector('#carousel');
