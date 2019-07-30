@@ -64,7 +64,7 @@ function addO() {
 }
 
 function isWinner() {
-    const rows = [...table.querySelectorAll('tbody tr')];
+    const rows = table.querySelectorAll('tbody tr');
     if (rows[0].cells[0].innerHTML === rows[0].cells[1].innerHTML && rows[0].cells[1].innerHTML === rows[0].cells[2].innerHTML && rows[0].cells[1].innerHTML != "") { return true }
     else if (rows[1].cells[0].innerHTML === rows[1].cells[1].innerHTML && rows[1].cells[1].innerHTML === rows[1].cells[2].innerHTML && rows[1].cells[1].innerHTML != "") { return true }
     else if (rows[2].cells[0].innerHTML === rows[2].cells[1].innerHTML && rows[2].cells[1].innerHTML === rows[2].cells[2].innerHTML && rows[2].cells[1].innerHTML != "") { return true }
