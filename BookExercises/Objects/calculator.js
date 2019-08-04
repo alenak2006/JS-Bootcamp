@@ -15,7 +15,7 @@ function Calculator() {
 
 
 
-/*let calculator = {
+/*const calculator = {
     read: function () {
         this.a = Number(prompt("Please enter a", 0));
         this.b = Number(prompt("Please enter b", 0));
