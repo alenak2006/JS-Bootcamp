@@ -91,13 +91,12 @@ users.sort(byField('name'));
 //Task 6
 function makeArmy() {
     let shooters = [];
-
     let i = 0;
     while (i < 10) {
         let j = i;
         let shooter = function () { // shooter function
 
-            alert(j); // should show its number
+            console.log(j); // should show its number
         };
         shooters.push(shooter);
         i++;
@@ -110,4 +109,29 @@ let army = makeArmy();
 
 army[0](); // the shooter number 0 shows 10
 army[5](); // and number 5 also outputs 10...
+// ... all shooters show 10 instead of their 0, 1, 2, 3...
+
+//Task7
+function makeArmy2(n) {
+    let shooters = [];
+    let serialNumber = 0;
+    for (; serialNumber < n; serialNumber++) {
+
+        const soldier = function (n) {
+            const shooter = function () {
+                console.log(n);
+                return n;
+            }
+            return shooter;
+        };
+        shooters.push(soldier(serialNumber));
+    }
+
+    return shooters;
+}
+
+let army2 = makeArmy2(10);
+
+army2[0](); // the shooter number 0 shows 10
+army2[5](); // and number 5 also outputs 10...
   // ... all shooters show 10 instead of their 0, 1, 2, 3...
