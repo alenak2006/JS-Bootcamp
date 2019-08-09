@@ -88,7 +88,6 @@ function debounce(func, ms) {
         } else return false;
     }
 }
-debugger;
 let check = debounce(alert, 1000);
 
 check(1); // runs immediately
@@ -97,6 +96,8 @@ check(2); // ignored
 setTimeout(() => f(3), 100); // ignored ( only 100 ms passed )
 setTimeout(() => f(4), 1100); // runs
 setTimeout(() => f(5), 1500); // ignored (less than 1000 ms from the last run)
+
+
 
 
 
