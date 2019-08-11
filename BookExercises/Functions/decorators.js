@@ -75,19 +75,22 @@ f1500("test"); // shows "test" after 1500ms
 
 //Task 3 Debounce decorator
 //The result of debounce(f, ms) decorator should be a wrapper that passes the call to f at maximum once per ms milliseconds.
-function debounce(func, ms) {
-    let prevTime = 0, currTime = 0, timeDiff = 0;
-    let time = new Date();
-    currTime = time.getTime();
-    return function (x) {
-        timeDiff = currTime - prevTime;
-        if (timeDiff < ms) {
-            let time2 = new Date();
-            prevTime = time2.getTime();
-            func(x);
-        } else return false;
-    }
+function debounce(f, ms) {
+
+    let isCooldown = false;
+
+    return function () {
+        if (isCooldown) return;
+
+        f.apply(this, arguments);
+
+        isCooldown = true;
+
+        setTimeout(() => isCooldown = false, ms);
+    };
+
 }
+
 let check = debounce(alert, 1000);
 
 check(1); // runs immediately
