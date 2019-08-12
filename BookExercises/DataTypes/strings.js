@@ -164,4 +164,47 @@ for (var i = 0; i < 5; i++) {
     setTimeout((function () { console.log(i); })(i), 0);
 }
 
+//Task 1
+function upperCase(str) {
+
+    if (str && typeof str === 'string') {
+        //return str[0].toUpperCase() + str.substr(1);
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    return str;
+}
+
+let str = 'hello this is me';
+console.log(upperCase(str));
+
+//Task 2
+function checkSpam(str) {
+    let temp = str.toUpperCase();
+    if (temp.includes('VIAGRA') || temp.includes('XXX'))
+        return true;
+    return false;
+
+}
+console.log(checkSpam('buy ViAgRA now'));
+console.log(checkSpam('free xxxxx'));
+console.log(checkSpam("innocent rabbit"));
+
+//Task 3
+function truncate(str, maxlength) {
+    return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '...' : str;
+}
+
+console.log(truncate("What I'd like to tell on this topic is:", 20));
+console.log(truncate("Hi everyone!", 20));
+
+//Task 4
+function extractCurrencyValue(str) {
+    return Number(str.replace(/[^0-9]/g, ''));
+}
+
+console.log(extractCurrencyValue('$120'));
+
+
+
+
 
