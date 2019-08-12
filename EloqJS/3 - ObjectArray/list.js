@@ -15,4 +15,3 @@ function min2(...numbers) {
 }
 
 console.log('min ' + min2(23, 34, -34, -33, 13, 4))
-
