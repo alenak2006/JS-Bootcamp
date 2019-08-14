@@ -111,10 +111,10 @@
 
 // let goodbye = concats('Goodbye');
 // goodbye('Troy');
+function concat(x, y) { return console.log(x + y); }
+var greet = concat.bind(null, 'Hello, ');
+greet('Pete');
 
-// function concat(x, y) { return console.log(x + y); }
-// var greet = concat.bind(null, 'Hello, ');
-// greet('Jordan');
 
 //callback
 function coinToss(guess, callback) {
