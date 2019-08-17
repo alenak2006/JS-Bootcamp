@@ -45,7 +45,7 @@ function makeCache2(fn) {
         }
 
         //if argument is not cached it needs to be computed and stored in cached[]
-        const result = fn(...args);
+        const result = fn.call(this, ...args);
         cache.set(args, result);
         return result;
     }
