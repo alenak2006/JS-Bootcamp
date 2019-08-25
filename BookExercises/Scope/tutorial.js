@@ -110,7 +110,88 @@ function pow(x, n) {
     return result;
 }
 
-alert(pow(2, 3)); // 8
+console.log(pow(2, 3)); // 8
 
+function foo(something) {
+    console.log(this.a, something);
+    return this.a + something;
+}
 
+// simple `bind` helper
+function bind(fn, obj) {
+    return function () {
+        return fn.apply(obj, arguments);
+    };
+}
 
+var obj = {
+    a: 2
+};
+
+var bar = bind(foo, obj);
+
+var b = bar(3); // 2 3
+console.log(b); // 5
+
+function foo(a) {
+    this.a = a;
+}
+
+var bar = new foo(2);
+console.log(bar.a); // 2
+
+if (!Function.prototype.softBind) {
+    Function.prototype.softBind = function (obj) {
+        var fn = this,
+            curried = [].slice.call(arguments, 1),
+            bound = function bound() {
+                return fn.apply(
+                    (!this ||
+                        (typeof window !== "undefined" &&
+                            this === window) ||
+                        (typeof global !== "undefined" &&
+                            this === global)
+                    ) ? obj : this,
+                    curried.concat.apply(curried, arguments)
+                );
+            };
+        bound.prototype = Object.create(fn.prototype);
+        return bound;
+    };
+}
+
+function foo() {
+    debugger;
+    // return an arrow function
+    return (a) => {
+        // `this` here is lexically adopted from `foo()`
+        console.log(this.a);
+    };
+}
+
+var obj1 = {
+    a: 2
+};
+
+var obj2 = {
+    a: 3
+};
+
+var bar = foo.call(obj1);
+bar.call(obj2); // 2, not 3!
+
+var myObject = {
+    // define a getter for `a`
+    get a() {
+        return this._a_;
+    },
+
+    // define a setter for `a`
+    set a(val) {
+        this._a_ = val * 2;
+    }
+};
+
+myObject.a = 2;
+
+myObject.a; // 4
