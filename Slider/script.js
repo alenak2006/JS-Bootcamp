@@ -1,12 +1,10 @@
-import { Clock } from './clock.js';
+import { Slider } from './slider.js';
 
-let clock1 = new Clock(
-    document.querySelector('.clock1'),
-    'Clock1',
+let slider1 = new Slider(
+    document.querySelector('#slider1')
 )
 
-let clock2 = new Clock(
-    document.querySelector('.clock2'),
-    'Clock2',
+let slider2 = new Slider(
+    document.querySelector('#slider2')
 )
 

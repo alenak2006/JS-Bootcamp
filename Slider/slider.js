@@ -1,71 +1,54 @@
 import { Component } from './ui-framework.js';
 
-export function Clock(element, title) {
+export function Slider(element) {
     Component.call(this, element);
     this._element = element;
-    this._title = title;
-    this._timer = false;
-    this._running = false;
-    this._render();
-    this.clockArea = this._element.querySelector('.clock-area');
-    this._element.querySelector('#start').addEventListener('click', this.start.bind(this));
-    this._element.querySelector('#stop').addEventListener('click', this.stop.bind(this));
-    this._element.querySelector('#myalert').addEventListener('click', this.myalert.bind(this));
+    this._thumb = this._element.querySelector('.thumb')
+    this._element.addEventListener('mousedown', this.onMousedown.bind(this));
 }
-Clock.prototype = Object.create(Component.prototype);
-Clock.prototype.constructor = Clock;
 
-//function to start the clock
-Clock.prototype.start = function () {
-    //if clock is already running then dont start again
-    if (!this._running) {
-        this._timer = setInterval(() => { this._renderTime() }, 1000);
-        this._running = true;
+Slider.prototype = Object.create(Component.prototype);
+Slider.prototype.constructor = Slider;
+
+let sliderCoords = 0;
+let thumbCoords = 0;
+let shiftX = 0;
+
+Slider.prototype.onMousedown = function () {
+    if (this._thumb) {
+        thumbCoords = this._thumb.getBoundingClientRect();
+        shiftX = event.clientX - thumbCoords.left;
+        sliderCoords = this._element.getBoundingClientRect();
+        this._element.addEventListener('mousemove', this.onMousemove.bind(this));
+        this._element.addEventListener('mouseup', this.onMouseup.bind(this));
+
+        return false;
     }
 }
 
-Clock.prototype.stop = function () {
-    //if clock is not running the dont stop
-    if (this._running) {
-        clearInterval(this._timer);
-        this._running = false;
+Slider.prototype.onMousemove = function (event) {
+    let newLeft = 0;
+    newLeft = event.clientX - shiftX - sliderCoords.left;
+
+    if (newLeft < 0) {
+        newLeft = 0;
     }
+    var rightEdge = this._element.offsetWidth - this._thumb.offsetWidth;
+    if (newLeft > rightEdge) {
+        newLeft = rightEdge;
+    }
+
+    this._thumb.style.left = newLeft + 'px';
 }
 
-Clock.prototype.myalert = function () {
-    alert('alert');
+Slider.prototype.onMouseup = function () {
+    this._element.removeEventListener('mousemove', this.onMousemove.bind(this));
+    this._element.removeEventListener('mouseup', this.onMouseup.bind(this));
 }
 
-//function to render clock area
-Clock.prototype._render = function () {
-    this._element.innerHTML = `
-    <h3>${this._title}</h3>
-    <div class = "clock-area">
-        <span class = 'hour' style="color: green">00</span>
-        <span>:</span>
-        <span class = 'min' style="color: blue">00</span>
-        <span>:</span>
-        <span class = 'sec' style="color: red">00</span>
-    </div>
-    <div class = "buttons">
-    <input type="button" id = "start" class = "btn btn-success" value="Start">
-    <input type="button" id = "stop" class="btn btn-danger" value="Stop">
-    <input type="button" id = "myalert" class = "btn btn-info" value="Click here and clock should freeze">
-    </div>`
-}
 
-//function to render time
-Clock.prototype._renderTime = function () {
-    let time = new Date();
-    this.clockArea.innerHTML = '';
-    this.clockArea.innerHTML = ` 
-        <span class = 'hour' style="color: green">
-        ${time.getHours() < 10 ? '0' + time.getHours() : time.getHours()}
-        </span><span>:</span><span class = 'min' style="color: blue">
-        ${time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()}
-        </span><span>:</span><span class = 'sec' style="color: red">
-        ${time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds()}</span>`
-}
+
+
 
 
 
