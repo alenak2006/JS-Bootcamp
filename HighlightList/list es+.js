@@ -1,28 +1,23 @@
-import { Component } from './ui-framework es+.js';
+import { Component } from './ui-framework.js';
 
-export class Clock extends Component {
-    constructor(element, title) {
+export class List extends Component {
+    constructor(element, title, list) {
         super(Component);
         this._element = element;
         this._title = title;
-        this._timer = false;
-        this._running = false;
+        this._list = list;
         this._render();
         this.clockArea = this._element.querySelector('.clock-area');
         this._element.querySelector('#start').addEventListener('click', this.start.bind(this));
-        this._element.querySelector('#stop').addEventListener('click', this.stop.bind(this));
-        this._element.querySelector('#myalert').addEventListener('click', this.myalert.bind(this));
     }
 
     //function to start the clock
     start() {
         //if clock is already running then dont start again
-        if (this._running) {
-            return
+        if (!this._running) {
+            this._timer = setInterval(() => { this._renderTime() }, 1000);
+            this._running = true;
         }
-        this._timer = setInterval(this._renderTime.bind(this), 1000);
-        this._running = true;
-
     }
     //function to stop the clock
     stop() {
@@ -41,11 +36,11 @@ export class Clock extends Component {
         this._element.innerHTML = `
         <h3>${this._title}</h3>
         <div class = "clock-area">
-            <span class = 'hour'>00</span>
+            <span class = 'hour' style="color: green">00</span>
             <span>:</span>
-            <span class = 'min'>00</span>
+            <span class = 'min' style="color: blue">00</span>
             <span>:</span>
-            <span class = 'sec'>00</span>
+            <span class = 'sec' style="color: red">00</span>
         </div>
         <div class = "buttons">
         <input type="button" id = "start" class = "btn btn-success" value="Start">
@@ -59,11 +54,11 @@ export class Clock extends Component {
         let time = new Date();
         this.clockArea.innerHTML = '';
         this.clockArea.innerHTML = ` 
-            <span class = 'hour'>
+            <span class = 'hour' style="color: green">
             ${time.getHours() < 10 ? '0' + time.getHours() : time.getHours()}
-            </span><span>:</span><span class = 'min'>
+            </span><span>:</span><span class = 'min' style="color: blue">
             ${time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()}
-            </span><span>:</span><span class = 'sec'>
+            </span><span>:</span><span class = 'sec' style="color: red">
             ${time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds()}</span>`
     }
 

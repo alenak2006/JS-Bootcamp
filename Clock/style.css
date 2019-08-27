@@ -1,10 +1,10 @@
 .hour {
-  color: red;
+  color: green;
 }
 
 .min {
-  color: #3c763d;
+  color: blue;
 }
 .sec{
-  color: blue;
+  color: red;
 }

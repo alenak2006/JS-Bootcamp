@@ -18,10 +18,12 @@ Clock.prototype.constructor = Clock;
 //function to start the clock
 Clock.prototype.start = function () {
     //if clock is already running then dont start again
-    if (!this._running) {
-        this._timer = setInterval(() => { this._renderTime() }, 1000);
-        this._running = true;
+    if (this._running) {
+        return
     }
+    this._timer = setInterval(this._renderTime.bind(this), 1000);
+    this._running = true;
+
 }
 
 Clock.prototype.stop = function () {
@@ -41,11 +43,11 @@ Clock.prototype._render = function () {
     this._element.innerHTML = `
     <h3>${this._title}</h3>
     <div class = "clock-area">
-        <span class = 'hour' style="color: green">00</span>
+        <span class = 'hour'>00</span>
         <span>:</span>
-        <span class = 'min' style="color: blue">00</span>
+        <span class = 'min'>00</span>
         <span>:</span>
-        <span class = 'sec' style="color: red">00</span>
+        <span class = 'sec'>00</span>
     </div>
     <div class = "buttons">
     <input type="button" id = "start" class = "btn btn-success" value="Start">
@@ -59,11 +61,11 @@ Clock.prototype._renderTime = function () {
     let time = new Date();
     this.clockArea.innerHTML = '';
     this.clockArea.innerHTML = ` 
-        <span class = 'hour' style="color: green">
+        <span class = 'hour'>
         ${time.getHours() < 10 ? '0' + time.getHours() : time.getHours()}
-        </span><span>:</span><span class = 'min' style="color: blue">
+        </span><span>:</span><span class = 'min'>
         ${time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()}
-        </span><span>:</span><span class = 'sec' style="color: red">
+        </span><span>:</span><span class = 'sec'>
         ${time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds()}</span>`
 }
 
