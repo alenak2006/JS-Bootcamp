@@ -2,13 +2,18 @@ import { List } from './list.js';
 
 let list1 = new List(
     document.querySelector('#list1'),
-    'List1',
-    ['test1', 'test2', 'test3']
+    'Flowers',
+    ['rose', 'tulip', 'sunflower', 'snowdrop']
 )
 
 let list2 = new List(
     document.querySelector('#list2'),
-    'List2',
-    ['list3', 'list4', 'list5', 'list7', 'list3', 'list4', 'list9']
+    'Trees',
+    ['pine', 'palm', 'cypress', 'acacia', 'birch', 'spruce', 'willow', 'maple']
 )
 
+let list3 = new List(
+    document.querySelector('#list3'),
+    'Fruits',
+    ['apples', 'pears', 'bananas', 'melon', 'guava']
+)

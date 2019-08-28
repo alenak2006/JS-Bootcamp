@@ -1,4 +1,4 @@
-import { Component } from './ui-framework.js';
+import { Component } from './ui-framework es+.js';
 
 export class List extends Component {
     constructor(element, title, items) {
@@ -15,8 +15,8 @@ export class List extends Component {
     _render() {
         this._element.innerHTML = `
         <h3>${this._title}</h3>
-        <div class = "list-area"><ul>
-        ${this._items.map((item, index) => `<li data-id = "${index}">${item}</li>`).join('')}
+        <div class = "list-area"><ul class = "list-group">
+        ${this._items.map((item, index) => `<li class = "list-group-item" data-id = "${index}">${item}</li>`).join('')}
         </ul>
         </div>`
     }
@@ -32,14 +32,14 @@ export class List extends Component {
 
         //if this is the first click then add 'selected' class and save as previous element
         if (!this._prev) {
-            li.classList.add('selected');
+            li.classList.add('active');
             this._prev = currentID;
             return;
         }
 
         //if CTRL key pressed then toggle every clicked element
         if (event.metaKey || event.ctrlKey) {
-            li.classList.toggle('selected');
+            li.classList.toggle('active');
         }
 
         //if SHIFT key pressed then select all elements between 'previous' clicked and 'current' clicked
@@ -52,23 +52,23 @@ export class List extends Component {
             }
             //add class to the selected range
             for (let li = this._prev; li <= currentID; li++) {
-                lis[li].classList.add('selected');
+                lis[li].classList.add('active');
             }
         }
 
         //if any other key pressed  
         if (!event.metaKey && !event.ctrlKey && !event.shiftKey) {
             //if clicked element is already selected then unselect all
-            if (li.matches('li.selected')) {
+            if (li.matches('li.active')) {
                 lis.forEach(element => {
-                    element.classList.remove('selected');
+                    element.classList.remove('active');
                 });
                 //if clicked element is not selected then select it and clear all other selections 
             } else {
                 lis.forEach(element => {
-                    element.classList.remove('selected');
+                    element.classList.remove('active');
                 });
-                li.classList.add('selected');
+                li.classList.add('active');
             }
         }
 

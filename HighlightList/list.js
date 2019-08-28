@@ -16,8 +16,8 @@ List.prototype.constructor = List;
 List.prototype._render = function () {
     this._element.innerHTML = `
     <h3>${this._title}</h3>
-    <div class = "list-area"><ul>
-    ${this._items.map((item, index) => `<li data-id = "${index}">${item}</li>`).join('')}
+    <div class = "list-area"><ul class = "list-group">
+    ${this._items.map((item, index) => `<li class = "list-group-item" data-id = "${index}">${item}</li>`).join('')}
     </ul>
     </div>`
 }
