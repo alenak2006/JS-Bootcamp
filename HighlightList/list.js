@@ -23,7 +23,7 @@ List.prototype._render = function () {
 }
 
 List.prototype.highlight = function (event) {
-    let lis = [...this.listArea.querySelectorAll('li')];
+    let lis = this.listArea.querySelectorAll('li');
     let li = event.target.closest('li');
     let currentID = li.dataset.id;
     //if element is not <li> then ignore click
