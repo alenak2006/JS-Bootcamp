@@ -1,12 +1,14 @@
-import { Clock } from './clock es+.js';
+import { List } from './list.js';
 
-let clock1 = new Clock(
-    document.querySelector('.clock1'),
-    'Clock1',
+let list1 = new List(
+    document.querySelector('#list1'),
+    'List1',
+    ['test1', 'test2', 'test3']
 )
 
-let clock2 = new Clock(
-    document.querySelector('.clock2'),
-    'Clock2',
+let list2 = new List(
+    document.querySelector('#list2'),
+    'List2',
+    ['list3', 'list4', 'list5', 'list7', 'list3', 'list4', 'list9']
 )
 

@@ -9,6 +9,6 @@ let list1 = new List(
 let list2 = new List(
     document.querySelector('#list2'),
     'List2',
-    ['list3', 'list4', 'list5', 'list7']
+    ['list3', 'list4', 'list5', 'list7', 'list3', 'list4', 'list9']
 )
 
