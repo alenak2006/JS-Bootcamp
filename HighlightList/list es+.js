@@ -10,6 +10,7 @@ export class List extends Component {
         this._render();
         this.listArea = this._element.querySelector('ul');
         this.listArea.addEventListener('click', this.highlight.bind(this));
+        this._element.querySelector('#myalert').addEventListener('click', this.getSelected.bind(this));
 
     }
     _render() {
@@ -18,6 +19,8 @@ export class List extends Component {
         <div class = "list-area"><ul class = "list-group">
         ${this._items.map((item, index) => `<li class = "list-group-item" data-id = "${index}">${item}</li>`).join('')}
         </ul>
+        </br>   
+        <button id = "myalert" class = "btn btn-info">Click to get selected items</button>
         </div>`
     }
 
@@ -74,6 +77,13 @@ export class List extends Component {
 
         //save ID of the processed element
         this._prev = currentID;
+    }
+
+    getSelected() {
+        let lis = [...this.listArea.querySelectorAll('li')];
+        alert(lis.filter((element) => {
+            return element.matches('.active')
+        }).map((element) => { return element.innerHTML }).join(', '));
     }
 }
 
