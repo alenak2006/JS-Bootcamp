@@ -11,3 +11,7 @@
     th:hover {
         background: yellow;
     }
+
+    h1{
+        color: red
+    }
