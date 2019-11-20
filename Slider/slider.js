@@ -43,7 +43,7 @@ Slider.prototype.onMousemove = function (event) {
 
 Slider.prototype.onMouseup = function () {
     this._element.removeEventListener('mousemove', this.onMousemove.bind(this));
-    this._element.removeEventListener('mouseup', this.onMouseup.bind(this));
+    //this._element.removeEventListener('mousedown', this.onMousedown.bind(this));
 }
 
 
